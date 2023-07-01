@@ -3,6 +3,7 @@ import '@/styles/globals.css'
 import Auth from '@/components/Auth'
 import { supabase } from '@/utils/supabaseClient';
 import { Container } from '@mui/material';
+import Header from '@/components/Header';
 
 export default function App({ Component, pageProps }) {
   const [session, setSession] = useState(null)
@@ -40,7 +41,10 @@ export default function App({ Component, pageProps }) {
     <>
       {!session ?
         (<Auth />) : 
-        (<Container ><Component {...pageProps} /></Container>)
+        (<Container >
+          <Header session={session}/>
+          <Component {...pageProps} />
+          </Container>)
       }
     </>
   )
